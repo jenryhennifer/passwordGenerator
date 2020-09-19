@@ -2,11 +2,14 @@
 var generateBtn = document.querySelector("#generate");
 
 //Prompts
-var length = prompt("Chose a length for you password from 8-125 characters.");
+
+var passwordLength = Number(prompt("Chose a length for you password from 8-128 characters."));
+  lengthChecker(); //checking to make sure the length of the password is between
 var lowerCase = confirm("Would you like lower case letters?");
 var upperCase = confirm("Would you like upper case letters?");
 var numbers = confirm("Would you like numbers?");
 var special = confirm("Would you liek special characters?");
+  checkForResponse();
 
 var lowerCaseCharacters = "abcdefghijklmnopqrstuvwxyz";
 var upperCaseCharacters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -18,15 +21,34 @@ lowerCharactersArray = lowerCaseCharacters.split("");
 upperCharactersArray = upperCaseCharacters.split("");
 specialCharactersArray = specialCharacters.split("");
 
+function lengthChecker(){
+  while (8 > passwordLength || 128 < passwordLength) {
+    alert("Please give length between 8 and 128");
+    passwordLength = prompt("Chose a length for you password from 8-128 characters.");
+  };
+};
+
+function checkForResponse() {
+  while(lowerCase === false && upperCase === false && numbers === false && special === false){
+    alert("please choose at least one type of character.");
+    lowerCase = confirm("Would you like lower case letters?");
+    upperCase = confirm("Would you like upper case letters?");
+    numbers = confirm("Would you like numbers?");
+    special = confirm("Would you liek special characters?");
+  }
+}
+
 //Creating random integers using the max number
 function randomInt(max){
   return Math.floor(Math.random()*Math.floor(max));
-}
+};
+
+
 
 function generatePassword(){
   var passwordCreated= "";
   var options=[];
-  debugger;
+
   if (lowerCase === true){
     options = options.concat(lowerCharactersArray);
   };
@@ -41,7 +63,7 @@ function generatePassword(){
   }
   //puts each chosen option into a new array
 
-  for(i=0; i<length; i++){
+  for(i=0; i<passwordLength; i++){
     var index = randomInt(options.length-1);
     passwordCreated += options[index];
   }
