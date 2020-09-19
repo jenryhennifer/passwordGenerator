@@ -72,6 +72,9 @@ function generatePassword(){
     passwordCreated += options[index];
   }
 
+  
+
+
   return passwordCreated;
 }
 
