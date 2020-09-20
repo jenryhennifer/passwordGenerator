@@ -6,6 +6,7 @@ function randomInt(max){
   return Math.floor(Math.random()*Math.floor(max));
 };
 
+//defining variables desired to use
 var passwordLength;
 var lowerCase;
 var upperCase;
@@ -82,20 +83,25 @@ function generatePassword(){
   var lowerPref = false;
   var specialPref = false;
 
+  //while loop to check if there are all desired elements in passowrd
+    //this is checking if all preferences are false, loop, the loop checks and resets preference to true if it was used or not desired
   while (!(numbersPref && upperPref && lowerPref && specialPref)) {
   passwordCreated = "";
+
     //for loop puts each chosen option into a new array
   for(i=0; i<passwordLength; i++){ 
     var index = randomInt(options.length-1);
     passwordCreated += options[index];
   }
-  debugger;
+
+  //function to put into .some() to ensure that the password contains at least one desired element
   var passwordLetters = passwordCreated.split("");
+
   function checkOptions(x,array){
     return array.includes(x);
-
   }
 
+  //running through each desired element and ensuring it has at least one character inside the password
   if (lowerCase === true){
     lowerPref = passwordLetters.some(char => checkOptions(char,lowerCharactersArray));
   }else {lowerPref = true}
@@ -110,11 +116,14 @@ function generatePassword(){
 
   if (numbers === true){
     numbersPref = passwordLetters.some(char => checkOptions(char, numbersArray));
-  }else{numberPref = true}
+  }else{numbersPref = true}
   }
   return passwordCreated;
 }
 
+  //arrow function => creating an 'unnamed' function that you use in one place so you dont have to define it separately, you use it as a callback for the function on the array
+  //it takes char as parametter and returns the output for the checkOptions function
+  //using it because i am using a second parameter in my checkOptions function
 
 
 //Write password to the #password input
@@ -124,7 +133,6 @@ function writePassword() {
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
-
 }
 
 // Add event listener to generate button

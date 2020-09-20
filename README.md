@@ -30,7 +30,7 @@ GitHub:
 
 The purpose of this project was to use JavaScript to generate a random password. Once the button is pressed it prompts the user to chose a desired length of a password between 8 and 128 characters. Next the user must confirm if they want upper case, lower case, numbers, and or special characters. Once the prompts are completed the password will generate automatically on the screen. If the button is pressed again, the user with be given the same prompt and a new password.
 
-I created a function to check the requested length to ensure it is within desired range. If the user chooses a number loer than 8 or higher than 128, then the page will prompt the user to pick a new number:
+I created a function to check the requested length to ensure it is within desired range. If the user chooses a number lower than 8 or higher than 128, then the page will prompt the user to pick a new number:
 ```    
     function lengthChecker(){
       while (8 > passwordLength || 128 < passwordLength) {
@@ -52,7 +52,20 @@ I also created a function to ensure that the user confirmed at minimum one optio
     };
 ```
 
+Another checker was added into the function producing the password. Once the prompts are completed, the password generator runs through a loop that ensures all desired elements are contained in the password. If it is missing an element, it will clear the password and loop again until are desired elements are there. This code was iterrated for all 4 elements (lower case letters, upper case letters, special characters, and numbers)
+```
+  if (lowerCase === true){
+    lowerPref = passwordLetters.some(char => checkOptions(char,lowerCharactersArray));
+  }else {lowerPref = true}
+```
 
+<hr>
+
+## Growth
+
+Some difficutlies I found were trying to get started, I found it very helpful to talk it out aloud how I am going to tackle each task. This project allowed me to get a deeper understanding of while loops, functions, and JavaScript as a whole.
+
+<hr>
 ## License
 
 MIT License
