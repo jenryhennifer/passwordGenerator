@@ -22,8 +22,36 @@ GitHub:
 
 ## Sample Image
 
+![Sample](Assets/03-javascript-homework-demo.png)
 
 <hr>
+
+## Descrtiption
+
+The purpose of this project was to use JavaScript to generate a random password. Once the button is pressed it prompts the user to chose a desired length of a password between 8 and 128 characters. Next the user must confirm if they want upper case, lower case, numbers, and or special characters. Once the prompts are completed the password will generate automatically on the screen. If the button is pressed again, the user with be given the same prompt and a new password.
+
+I created a function to check the requested length to ensure it is within desired range. If the user chooses a number loer than 8 or higher than 128, then the page will prompt the user to pick a new number:
+```    
+    function lengthChecker(){
+      while (8 > passwordLength || 128 < passwordLength) {
+        alert("Please give length between 8 and 128");
+        passwordLength = prompt("Chose a length for you password from 8-128 characters.");
+      };
+    };
+```
+I also created a function to ensure that the user confirmed at minimum one option was chosen in the promtps. If the user choses 'cancel' on all prompts then they will be reprompted to choose at least one type of characters:
+```
+    function checkForResponse() {
+      while(lowerCase === false && upperCase === false && numbers === false && special === false){
+        alert("please choose at least one type of character.");
+        lowerCase = confirm("Would you like lower case letters?");
+        upperCase = confirm("Would you like upper case letters?");
+        numbers = confirm("Would you like numbers?");
+        special = confirm("Would you liek special characters?");
+      };
+    };
+```
+
 
 ## License
 
